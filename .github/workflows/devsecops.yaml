@@ -14,13 +14,13 @@ jobs:
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
             SLACK_MESSAGE: |
-                *Actor*: https://github.com/${{ github.actor }} just made ${{ github.event_name }}!
+                **Event**: https://github.com/${{ github.actor }} just made ${{ github.event_name }}!
 
-                *Repository*: ${{ github.event.head_commit.url }}
+                **Repository**: ${{ github.event.head_commit.url }}
 
-                *GitHub Branch*: ${{ github.ref_name }}
+                **GitHub Branch**: ${{ github.ref_name }}
 
-                *Commit message*: ${{ github.event.head_commit.message }}
+                **Commit Message**: ${{ github.event.head_commit.message }}
             SLACK_TITLE: DevSecOps Frontend Pipeline
             MSG_MINIMAL: true
             SLACKIFY_MARKDOWN: true
