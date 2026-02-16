@@ -3,6 +3,9 @@ name: Bootcamp Demo Frontend DevSecOps Pipeline
 on:
     push:
         branches: ['devops']
+        paths-ignore:
+        - '**/*.yaml'
+        - '**/*.md'  
 
 jobs:
     notify:
@@ -28,5 +31,6 @@ jobs:
             SLACK_TITLE: DevSecOps Frontend Pipeline
             MSG_MINIMAL: true
             SLACKIFY_MARKDOWN: true
+
         
         
