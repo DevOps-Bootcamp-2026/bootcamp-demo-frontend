@@ -3,9 +3,9 @@ name: Bootcamp Demo Frontend DevSecOps Pipeline
 on:
     push:
         branches: ['devops']
-        # paths-ignore:
-        # - '**/*.yaml'
-        # - '**/*.md'  
+        paths-ignore:
+        - '**/*.yaml'
+        - '**/*.md'  
 
 jobs:
     notify:
