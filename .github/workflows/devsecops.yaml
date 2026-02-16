@@ -7,10 +7,14 @@ on:
 jobs:
     notify:
         runs-on: ubuntu-latest
+        if: >-
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'doc:')) ||
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'style:')) ||
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'refactor:')) ||
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'ci:'))
         steps:
         - name: Slack Notification
           uses: rtCamp/action-slack-notify@v2
-          if: always()
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
             SLACK_MESSAGE: |
@@ -24,5 +28,5 @@ jobs:
             SLACK_TITLE: DevSecOps Frontend Pipeline
             MSG_MINIMAL: true
             SLACKIFY_MARKDOWN: true
-
+        
         
