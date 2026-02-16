@@ -11,9 +11,8 @@ jobs:
     notify:
         runs-on: ubuntu-latest
         if: >-
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'doc:')) ||
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'style:')) ||
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'refactor:')) ||
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'doc:')) &&
+            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'style:')) &&
             (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'ci:'))
         steps:
         - name: Slack Notification
