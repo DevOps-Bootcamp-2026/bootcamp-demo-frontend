@@ -1,0 +1,36 @@
+name: Bootcamp Demo Frontend DevSecOps Pipeline
+
+on:
+    push:
+        branches: ['devops']
+        paths-ignore:
+        - '**/*.yaml'
+        - '**/*.md'  
+
+jobs:
+    notify:
+        runs-on: ubuntu-latest
+        if: >-
+            github.event_name == 'push' && 
+            !startsWith(github.event.head_commit.message, 'doc:') &&
+            !startsWith(github.event.head_commit.message, 'style:') &&
+            !startsWith(github.event.head_commit.message, 'ci:')
+        steps:
+        - name: Slack Notification
+          uses: rtCamp/action-slack-notify@v2
+          env:
+            SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
+            SLACK_MESSAGE: |
+                **Event**: https://github.com/${{ github.actor }} just made ${{ github.event_name }}!
+
+                **Repository**: ${{ github.event.head_commit.url }}
+
+                **GitHub Branch**: ${{ github.ref_name }}
+
+                **Commit Message**: ${{ github.event.head_commit.message }}
+            SLACK_TITLE: DevSecOps Frontend Pipeline
+            MSG_MINIMAL: true
+            SLACKIFY_MARKDOWN: true
+
+        
+        
