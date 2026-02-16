@@ -9,7 +9,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Slack Notification
-          uses: bryannice/gitactions-slack-notification@2.0.0
+          uses: rtCamp/action-slack-notify@v2
+          if: always()
           env:
             SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
             SLACK_MESSAGE: |
