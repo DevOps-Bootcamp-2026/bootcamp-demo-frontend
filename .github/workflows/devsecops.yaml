@@ -14,9 +14,9 @@ jobs:
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
             SLACK_MESSAGE: |
-                *Actor*: *<${{ github.actor }}>* just made ${{ github.event_name }}!
+                *Actor*: *${{ github.actor }}* just made ${{ github.event_name }}!
 
-                *Repository*: ${{ github.event.head_commit.url }}
+                **Repository**: ${{ github.event.head_commit.url }}
 
                 *Branch*: ${{ github.ref_name }}
 
