@@ -11,9 +11,10 @@ jobs:
     notify:
         runs-on: ubuntu-latest
         if: >-
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'doc:')) &&
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'style:')) &&
-            (github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'ci:'))
+            github.event_name == 'push' && 
+            !startsWith(github.event.head_commit.message, 'doc:') &&
+            !startsWith(github.event.head_commit.message, 'style:') &&
+            !startsWith(github.event.head_commit.message, 'ci:')
         steps:
         - name: Slack Notification
           uses: rtCamp/action-slack-notify@v2
