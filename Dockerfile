@@ -10,13 +10,13 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies using npm ci for faster, more reliable build and install cross-spawn@7.0.5.
+# Install dependencies using npm ci for faster, more reliable build
 RUN npm ci
 
 # Copy the rest of the application source code
 COPY . .
 ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 ENV NODE_ENV=production
 
 # Build the application
